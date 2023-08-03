@@ -4,4 +4,6 @@
 - Checkers
 - Battleship
 
-x is the horizontal axis and y is the vertical axis
+In all of the games, x is the horizontal axis and y is the vertical axis
+
+Minesweeper and Chess in particular are a work in progress

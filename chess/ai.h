@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <stdlib.h>
 #include "functions.h"
 // Computer functions
 struct move {
@@ -9,7 +8,7 @@ struct move {
   int x2;
   int y2;
 };
-int get_piece_value(int i, int j);
-int evaluate_board();
-void get_possible_moves(std::vector<move> &v);
-move decide_move();
+int get_piece_value(int i, int j, char colour);
+int evaluate_board(char colur);
+void get_possible_moves(std::vector<move> &v, char colour);
+move decide_move(char colour);

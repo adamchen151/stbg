@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include "functions.h"
 using namespace std;
 void print(vector<char> v) {
   cout << v[0] << " | " << v[1] << " | " << v[2] << "\n";
@@ -27,7 +28,8 @@ void takeTurn(vector<char> &v, char c, int player) {
 }
 
 void funnyComments(vector<char> v, int turn) {
-  if (turn == 1 && v[4] == 'X') cout << "\nImagine going in the middle first cringe gameplay";
+  if (turn == 1 && v[4] == 'X') cout << "\nImagine going in the middle first cringe gameplay\n";
+  if (turn == 9 && v[4] == 'X') cout << "\nWhat the flip happened lmao\n";
 }
 
 int main() {
@@ -36,12 +38,13 @@ int main() {
   
   for(int turn = 1; turn <= 9; turn++) {
     print(v);
-    turn % 2 == 1 ? takeTurn(v, 'X', 1) : takeTurn(v, 'O', 2);
+    turn % 2 == 1 ? takeTurn(v, 'X', 1) : aiTurn(v, 'O', 2);
 
     funnyComments(v, turn);
     
     if (checkWin(v)) {
-      cout << "\nPlayer" << turn % 2 << " has won!";
+      print(v);
+      cout << "\nPlayer " << turn % 2 << " has won!";
       break;
     }
     if (turn == 9 && !checkWin(v)) cout << "\nTie. What a boring ending";

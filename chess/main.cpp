@@ -3,6 +3,17 @@
 #include "move.h"
 #include <iostream>
 #include <vector>
+// Clean Makefile using make clean
+/*
+g++ -c helloWorld.cpp hello.cpp
+It compiles and creates object code for the files helloWorld.cpp and hello.cpp to helloWorld.o and hello.o respectively.
+ 
+g++ -o main.exe helloWorld.o hello.o
+It links the object codes helloWorld.o and hello.o to create an executable file main.exe
+ 
+// one file
+g++ helloWorld.cpp
+*/
 
 int main() {
   int turn = 1;
@@ -30,9 +41,9 @@ int main() {
     if (!isAI || colour != aiColour) {
       while (!isMove) {
         do {
-          b = getInput("\nInput the starting coordinates (x y): ");
+          b = getInput("\nInput the starting coordinates (xy): ");
           // Have to somehow validate ending coords
-          e = getInput("\nInput the ending coordinates (x y): ");
+          e = getInput("Input the ending coordinates (xy): ");
         } while (board[b.first][b.second].colour != colour);
 
         if (board[b.first][b.second].colour ==

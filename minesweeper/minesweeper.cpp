@@ -4,13 +4,26 @@
 #include <cstdlib>
 using namespace std;
 
+// Most scuffed mine system I've ever seen
 const int board_len = 8;
 const int numOfMines = 12;
 const int mine = -69;
 const int flag = 69;
 
+int correctInput(char x) {
+  return x - 'a';
+}
+
 void print(vector<vector<int>> board) {
-  cout << "\n  1 2 3 4 5 6 7 8\n";
+  // First row
+  cout << "\n  ";
+  for (int i = 0; i < board_len; i++) {
+    char c = 'a' + i;
+    cout << c << ' ';
+  }
+  cout << "\n";
+
+
   for (int i = 0; i < board_len; i++) {
     cout << i+1 << ' ';
       for (int j = 0; j < board_len; j++) {
@@ -66,41 +79,29 @@ bool isWin(vector<vector<int>> &board) {
   return true;
 }
 
-int validateInput() {
-  int x;
-  while (!(cin >> x) || x > 0 || x <= board_len) {
-    cout << "Invalid input.";
-    cin.clear();
-    cin.ignore('\n', 100);
-  }
-    return x;
-}
-
 int main() {
   vector<vector<int>> board (board_len, vector<int> (board_len, 0));
   generate(board);
   fillNumbers(board);
+  print(board);
 
   for (int i = 0; i < board_len * board_len; i++) {
-    int x, y;
+    int y;
+    char xChar;
+    string input;
     do {
         cout << "Enter the x and y coordinates you want to check (The board is 8x8):\n";
-
-        while(!(cin >> y)) {
-            cout << "Please enter valid coords (1-8):\n";
-            cin.clear();
-            cin.ignore(100, '\n');
-        }
-
-        while(!(cin >> x)) {
-            cout << "Please enter valid coords (1-8):\n";
-            cin.clear();
-            cin.ignore(100, '\n');
-        }
-    } while (x > 8 || x < 1 || y > 8 || y < 1);
+        cin >> input;
+        cout << input << endl;
+        xChar = input[0];
+        y = input[1] - '0';
+        cout << xChar << y;
+    } while (xChar > 'h' || xChar < 'a' || y > 8 || y < 1);
+    int x = correctInput(xChar);
     
-    x -= 1; 
-    y -= 1;
+    //x--; 
+    y--;
+    swap(x, y); //kekw 
     
     if (board[x][y] == mine) {
       cout << "You Lose"; break;

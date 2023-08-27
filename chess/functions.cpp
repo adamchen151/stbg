@@ -15,19 +15,16 @@ bool isAI;
 char aiColour;
 
 std::pair<int, int> getInput(std::string text) {
-  int x, y;
+  char x, y;
   std::cout << text;
-  std::cin >> y >> x;
-  while (std::cin.fail() || y > 8 || y < 1 || x > 8 || x < 1) {
+  std::cin >> x >> y;
+  while (std::cin.fail() || y > '8' || y < '1' || x > 'h' || x < 'a') {
     std::cin.clear();           // Clear the error state
     std::cin.ignore(100, '\n'); // Ignore the rest of the line
-    std::cout << "\nInvalid input. Please enter two integers seperated by a "
-                 "space (1-8): ";
-    std::cin >> y >> x;
+    std::cout << "\nInvalid input. An example input is e7 : ";
+    std::cin >> x >> y;
   }
-  x--;
-  y--;
-  return std::make_pair(x, y);
+  return std::make_pair('8' - y, x -= 'a');
 }
 
 void initializeBoard() {
@@ -44,9 +41,9 @@ void initializeBoard() {
 }
 
 void printBoard() {
-  std::cout << "\n  1 2 3 4 5 6 7 8 x\n";
+  std::cout << "\n(y)\n";
   for (int i = 0; i < 8; i++) {
-    std::cout << i + 1 << '|';
+    std::cout << 8 - i << '|';
     for (int j = 0; j < 8; j++) {
       char name = board[i][j].name != '\0' ? board[i][j].name : '_';
       // 37 makes text white, 31 makes text red
@@ -61,7 +58,7 @@ void printBoard() {
     }
     std::cout << '\n';
   }
-  std::cout << "y\n";
+  std::cout << "  a b c d e f g h (x)\n";
 }
 
 bool isWin(char colour) {

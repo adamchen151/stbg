@@ -9,6 +9,6 @@ struct move {
   int y2;
 };
 int get_piece_value(int i, int j, char colour);
-int evaluate_board(char colur);
+int evaluate_board(char colour);
 void get_possible_moves(std::vector<move> &v, char colour);
 move decide_move(char colour);
